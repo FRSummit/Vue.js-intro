@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>VueJs Directives</title>
+		<script type = "text/javascript" src = "js/vue.js"></script>
+	</head>
+	<body>
+		<div id = "databinding" style="border-bottom: 2px solid;padding-bottom:1.5%;">
+			<div v-changestyle>VueJS Directive</div>
+		</div>
+		
+		<!--Console the arguments-->
+		<div id = "databinding2" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<div v-changestyle = "{color:'green'}">VueJS Directive</div>
+		</div>
+		
+		<!--Filter-->
+		<div id = "databinding3" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<input  v-model = "name" placeholder = "Enter Name" /><br/>
+			<span style = "font-size:25px;"><b>Letter count is : {{name | countletters}}</b></span>
+		</div>
+		
+		<script type = "text/javascript">
+			Vue.directive("changestyle", {
+				bind(e1, binding, vnode) {
+					console.log(e1);
+					e1.style.color = "red";
+					e1.style.fontSize = "30px";
+				}
+			});
+			
+			var vm = new Vue({
+				el: '#databinding',
+				data: {
+				},
+				methods : {
+				},
+			});
+			/*-------Console the arguments----------------------------------*/
+			Vue.directive("changestyle", {
+				bind(e1, binding, vnode) {
+					console.log(e1);
+					console.log(binding.value.color);
+					console.log(vnode);
+					e1.style.color=binding.value.color;
+					e1.style.fontSize = "30px";
+				}
+			});
+			
+			var vm = new Vue({
+				el: '#databinding2',
+				data: {
+				},
+				methods : {
+				},
+			});
+			/*-------Filter----------------------------------*/
+			var vm = new Vue({
+				el: '#databinding3',
+				data: {
+					name : ""
+				},
+				filters : {
+					countletters : function(value) {
+						return value.length;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

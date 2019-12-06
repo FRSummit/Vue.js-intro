@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<title>VueJs Component</title>
+		<style>
+			h3, h4, input{
+				margin: 0;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+   
+	<body>
+		<!--Computed Properties-->
+		<div id = "computed_props" style="border-bottom: 2px solid; margin-bottom:2%;">
+			FirstName : <input type = "text" v-model = "firstname" /> <br/><br/>
+			LastName : <input type = "text" v-model = "lastname"/> <br/>
+			<h3>My name is {{firstname}} {{lastname}}</h3>
+			<h3><h4>Using computed method<h4> Full Name : {{getfullname}}</h3>
+		</div>
+		<!--Random Properties-->
+		<div id = "computed_props2"  style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<h3 style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h3>
+			<h3>Random No from method: {{getrandomno1()}}</h3>
+			<h3>Random No from method: {{getrandomno1()}}</h3>
+			<h3>Random No from method: {{getrandomno1()}}</h3>
+			<h3>Random No from method: {{getrandomno1()}}</h3>
+		 </div>
+		  
+		<!--Get Random Properties-->
+		<div id = "computed_props3" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<input type = "text" v-model = "fullname" />
+			<h3>{{firstName}}</h3>
+			<h3>{{lastName}}</h3>
+		</div>
+		
+		<!--Set Random Properties-->
+		<div id = "computed_props4" style="border-bottom: 2px solid; margin-top:2%;">
+			<input type = "text" v-model = "fullname" />
+			<h3>{{firstName}}</h3>
+			<h3>{{lastName}}</h3>
+		</div>
+
+		<script>
+			//Computed Properties
+			var vm = new Vue({
+				el: '#computed_props',
+				data: {
+					firstname : "",
+					lastname  : "",
+					birthyear : ""
+				},
+				computed :{
+					getfullname : function(){
+						return this.firstname + " " + this.lastname;
+					}
+				}
+			})
+			/*-------------------------------------------------------------*/
+			//Random Computed Properties
+			var vm2 = new Vue({
+				el: '#computed_props2',
+				data: {
+					name : "helloworld"
+				},
+				methods: {
+					getrandomno1 : function() {
+						return Math.random();
+					}
+				},
+				computed :{
+					getrandomno : function(){
+						return Math.random();
+					}
+				}
+			});
+			/*-------------------------------------------------------------*/
+			//Get Random Properties
+			var vm3 = new Vue({
+				el: '#computed_props3',
+				data: {
+					firstName : "F R",
+					lastName : "Summit"
+				},
+				methods: {
+				},
+				computed :{
+					fullname : {
+						get : function() {
+							return this.firstName+" "+this.lastName;
+						}
+					}
+				}
+			});
+			/*-------------------------------------------------------------*/
+			//Set Random Properties
+			var vm4 = new Vue({
+				el: '#computed_props4',
+				data: {
+					firstName : "F R",
+					lastName : "Summit"
+				},
+				methods: {
+				},
+				computed :{
+					fullname : {
+						get : function() {
+							return this.firstName+" "+this.lastName;
+						},
+						set : function(name) {
+							var fname = name.split(" ");
+							this.firstName = fname[0];
+							this.lastName = fname[1]
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

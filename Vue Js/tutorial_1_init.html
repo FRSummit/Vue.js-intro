@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bue Js</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id="app">
+		  <h1>{{ message }}</h1>
+		</div>
+		
+		<div id = "vue_det">
+			<h1>Firstname : {{firstname}}</h1>
+			<h1>Lastname  : {{lastname}}</h1>
+			<h1>Address   : {{address}}</h1>
+			<h1>{{mydetails()}}</h1>
+		</div>
+
+		<script>
+			var myObject = new Vue({
+			    el: '#app',
+			    data: {
+					message: 'Hello F R Summit'
+				}
+			});
+			
+			/*----------------------------------------------------------------------*/
+			
+			var  vm = new Vue({
+				el: '#vue_det',
+				data: {
+					firstname : "F R",
+					lastname  : "Summit",
+					address    : "Dhaka"
+				},
+				methods: {
+					mydetails : function() {
+						return "I am "+this.firstname +" "+ this.lastname + " from " + this.address;
+					}
+				}
+			});
+			console.log(vm.firstname);
+			console.log(vm.lastname);
+			console.log(vm.address);
+			
+			/*----------------------------------------------------------------------*/
+			
+			var _obj = { 
+					fname: "F R",
+					lname: "Summit"
+				}
+			var vm2 = new Vue({
+					data: _obj
+				});
+			console.log(_obj);
+			console.log(vm2);
+			console.log(vm2.$data);
+			console.log(vm2.$data.fname + " " + vm2.$data.lname);
+			
+		</script>
+	</body>
+</html>

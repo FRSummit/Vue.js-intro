@@ -1,0 +1,110 @@
+<html>
+	<head>
+		<title>VueJs Component</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+   
+	<body>
+		<div id = "component_test">
+			<testcomponent></testcomponent>
+		</div>
+		<div id = "component_test1">
+			<testcomponent></testcomponent>
+		</div>
+		
+		<!--directly made the components-->
+		<div id = "component_test2">
+			<testcomponent2></testcomponent2>
+		</div>
+		
+		<!--local registration-->
+		<div id = "component_test3">
+			<testcomponent3></testcomponent3>
+		</div>
+		
+		<!--dynamic component-->
+		<div id = "databinding">
+			<component v-bind:is = "view"></component>
+		</div>
+
+		<script>
+			Vue.component('testcomponent', {
+				template : '<div><h3>This is comming from component</h3></div>'
+			});
+			var vm = new Vue({
+				el: '#component_test'
+			});
+			var vm1 = new Vue({
+				el: '#component_test1'
+			});
+			
+			/*-----------------------------------------------------------*/
+			//directly made the components
+			var vm2 = new Vue({
+				el: '#component_test2',
+				components:{
+					'testcomponent2': {
+						template : '<div><h3>This is coming from component (directly made the component)</h3></div>'
+					}
+				}
+			});
+			
+			/*-----------------------------------------------------------*/
+			//local registration
+			/*Vue.component('testcomponent3',{
+				template : '<div v-on:mouseover = "changename()" v-on:mouseout = "originalname();"><h3>Custom Component created by <span id = "name">{{name}}</span></h3></div>',
+				data: function() {
+					return {
+						name : "FRSummit"
+					}
+				},
+				methods:{
+					changename : function() {
+						this.name = "Rimi";
+					},
+					originalname: function() {
+						this.name = "FRSummit";
+					}
+				}
+			});
+			var vm3 = new Vue({
+				el: '#component_test3'
+			});*/
+			var vm3 = new Vue({
+				el: '#component_test3',
+				components:{
+					'testcomponent3': {
+						template : '<div v-on:mouseover = "changename()" v-on:mouseout = "originalname();"><h3>Custom Component created by <span id = "name">{{name}}</span></h3></div>',
+						data: function() {
+							return {
+								name : "FRSummit"
+							}
+						},
+						methods:{
+							changename : function() {
+								this.name = "Rimi";
+							},
+							originalname: function() {
+								this.name = "FRSummit";
+							}
+						}
+					}
+				}
+			});
+			
+			/*-----------------------------------------------------------*/
+			//local registration
+			var vm4 = new Vue({
+				el: '#databinding',
+				data: {
+					view: 'component1'
+				},
+				components: {
+					'component1': {
+						template: '<div><span style = "font-size:25;color:red;">Dynamic Component</span></div>'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

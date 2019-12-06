@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bue Js</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{ message }}</p>
+			<p><input v-model="message"></p>
+		</div>
+
+		<script>
+			myObject = new Vue({
+			  el: '#app',
+			  data: {message: 'Hello Vue.js!'}
+			})
+		</script>
+	</body>
+</html>
+
+<!--Vue.js Two-Way Binding
+
+The v-model directive binds the value of HTML elements to application data.
+This is called two-way binding:-->

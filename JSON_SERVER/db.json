@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstname": "Fayazur",
+      "lastname": "Summit",
+      "email": "frsummit@gmail.com",
+      "age": "27",
+      "companyId": "1"
+    },
+    {
+      "id": "2",
+      "firstname": "Fayazur",
+      "lastname": "Summit",
+      "email": "frsummit@gmail.com",
+      "age": "27",
+      "companyId": "2"
+    },
+    {
+      "id": "3",
+      "firstname": "Fayazur",
+      "lastname": "Summit",
+      "email": "frsummit@gmail.com",
+      "age": "27",
+      "companyId": "2"
+    },
+    {
+      "firstname": "Hafsina",
+      "lastname": "Rimi",
+      "email": "rimi@gmail.com",
+      "age": "25",
+      "companyId": "1",
+      "id": "ObDkSf5"
+    },
+    {
+      "firstname": "Habiba",
+      "lastname": "Jemy",
+      "email": "hsjemy@gmail.com",
+      "age": "29",
+      "companyId": "2",
+      "id": "w_dbuiU"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "description": "This is apple company"
+    },
+    {
+      "id": "2",
+      "name": "Google",
+      "description": "This is Google company"
+    },
+    {
+      "id": "3",
+      "name": "NASA",
+      "description": "This is NASA company"
+    }
+  ]
+}

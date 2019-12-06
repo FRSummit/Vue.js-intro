@@ -1,0 +1,121 @@
+<html>
+	<head>
+      <title>VueJs Instance</title>
+		<style>
+			.info {
+				color: #00529B;
+				background-color: #BDE5F8;
+			}
+			div {
+				margin: 0px 0;
+				padding: 12px;
+			}
+			.active {
+				color: #4F8A10;
+				background-color: #DFF2BF;
+			}
+			.displayError{
+				color: #D8000C;
+				background-color: #FFBABA;
+			}
+			h3, h1, p {
+				margin: 0px 0;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id = "databinding" style="border-bottom: 2px solid; padding-bottom:1.5%;">
+			{{title}}<br/>
+			<a href = "hreflink" target = "_blank"> Click Me </a>(won't work) <br/>
+			<a href = "{{hreflink}}" target = "_blank">Click Me </a>(won't work)  <br/>
+			<a v-bind:href = "hreflink" target = "_blank">Click Me </a>   <br/>
+		</div>
+		
+		<!--Binding HTML Classes-->
+		<div id = "classbinding2" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<div v-bind:class = "{active:isactive}"><b>{{title}}</b></div>
+		</div>
+		
+		<!--Multiple Classes-->
+		<div id = "classbinding3" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<div class = "info"  v-bind:class = "{ active: isActive, 'displayError': hasError }">{{title}}</div>
+		</div>
+		
+		<!--Form Input Bindings-->
+		<div id = "databinding2" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<div style="width:45%; display: inline-block; background: #c7bbbb;">
+				<h3>TEXTBOX</h3>
+				<input  v-model = "name" placeholder = "Enter Name" />
+				<h3>Name entered is : {{name}}</h3>
+				<hr/>
+				<h3>Textarea</h3>
+				<textarea v-model = "textmessage" placeholder = "Add Details"></textarea>
+				<h1><p>{{textmessage}}</p></h1>
+				<hr/>
+				<h3>Checkbox</h3>
+				<input type = "checkbox" id = "checkbox" v-model = "checked"> {{checked}}
+				<hr/>
+			</div>
+			
+			<div style="width:45%; display: inline-block; float:right; background: #c7bbbb;">
+				<h3>Radio</h3>
+				<input type = "radio" id = "black" value = "Black" v-model = "picked">Black
+				<input type = "radio" id = "white" value = "White" v-model = "picked">White
+				<h3>Radio element clicked : {{picked}} </h3>
+				<hr/>
+				<h3>Select</h3>
+				<select v-model = "languages">
+					<option disabled value = "">Please select one</option>
+					<option>Java</option>
+					<option>Javascript</option>
+					<option>Php</option>
+					<option>C</option>
+					<option>C++</option>
+				</select>
+				<h3>Languages Selected is : {{ languages }}</h3>
+			</div>
+		</div>
+		
+		<script type = "text/javascript">
+			var vm = new Vue({
+				el: '#databinding',
+				data: {
+					title : "DATA BINDING",
+					hreflink : "http://www.google.com"
+				}
+			});
+			/*-----------Binding HTML Classes---------------------------*/
+			var vm2 = new Vue({
+				el: '#classbinding2',
+				data: {
+					title : "CLASS BINDING",
+					//isactive : true
+					isactive : false
+				}
+			});
+			/*-----------Multiple Classes---------------------------*/
+			var vm3 = new Vue({
+				el: '#classbinding3',
+				data: {
+					title : "This is class binding example",
+					/*isActive : false,
+					hasError : false*/
+					isActive : true,
+					hasError : false
+				}
+			});
+			/*-----------Form Input Bindings---------------------------*/
+			var vm4 = new Vue({
+				el: '#databinding2',
+				data: {
+					name:'',
+					textmessage:'',
+					checked : false,
+					picked : 'White',
+					languages : "Java"
+				}
+			});
+		</script>
+	</body>
+</html>

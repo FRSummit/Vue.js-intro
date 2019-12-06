@@ -1,0 +1,80 @@
+<html>
+   <head>
+		<title>VueJs Introduction</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+   </head>
+   <body>
+		<script type = "text/javascript">
+			var _obj = { 
+					fname: "F R", 
+					lname: "Summit"
+				};
+         
+			// direct instance creation
+			var vm = new Vue({
+				data: _obj
+			});
+			
+			console.log(vm.fname);
+			console.log(vm.$data);
+			console.log(vm.$data.fname);
+         
+			// must use function when in Vue.extend()
+			var Component = Vue.extend({
+				data: function () {
+					return _obj
+				}
+			});
+			
+			var myComponentInstance = new Component();
+			console.log(myComponentInstance.lname);
+			console.log(myComponentInstance.$data);
+			
+			/*---------------------------------------------------------------------*/
+			
+			var vm = new Vue({
+				data: { 
+					a: 2 
+				},
+				
+				computed: {
+					// get only, just need a function
+					aSum: function () {
+						return this.a + 2;
+					},
+				   
+					// both get and set
+					aSquare: {
+						get: function () {
+							return this.a*this.a;
+						},
+						set: function (v) {
+							this.a = v*2;
+						}
+					}
+				}
+			})
+			
+			console.log(vm.aSquare);  // -> 4
+			vm.aSquare = 3;
+			console.log(vm.a);       // -> 6
+			console.log(vm.aSum); // -> 8
+		
+			/*-------------------------------------------------------------------------*/
+			
+			var vm2 = new Vue({
+				data: { 
+					a: 5 
+				},
+				
+				methods: {
+					asquare2: function () {
+						this.a *= this.a;
+					}
+				}
+			})
+			vm2.asquare2();
+			console.log(vm2.a); // 25
+		</script>
+   </body>
+</html>

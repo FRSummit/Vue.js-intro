@@ -1,0 +1,185 @@
+<html>
+	<head>
+		<title>VueJs Instance</title>
+		<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+		<script type = "text/javascript" src = "js/vue.js"></script>
+		<style>
+			#databinding6 button{
+				margin: 0 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "databinding">
+			<button v-on:click = "displaynumbers">Click ME</button>
+			<button @click = "displaynumbers2">Click ME 2</button>
+			<h2> Add Number 100 + 200 = {{total}}</h2>
+			<h2> Add Number 200 + 200 = {{total2}}</h2>
+		</div>
+		
+		<div id = "databinding2">
+			<div v-bind:style = "styleobj" v-on:mouseover = "changebgcolor" v-on:mouseout = "originalcolor"></div>
+		</div>
+		
+		<!--Event Modifiers-->
+		<div id = "databinding3" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<button v-on:click.once = "buttonclickedonce" v-bind:style = "styleobj">Click Once</button>
+			Output:{{clicknum}}
+			<br/>
+			<button v-on:click = "buttonclicked"  v-bind:style = "styleobj">Click Me</button>
+			Output:{{clicknum1}}
+		</div>
+		
+		<!--Prevent-->
+		<div id = "databinding4" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			<a href = "http://www.google.com" v-on:click = "clickme" target = "_blank" v-bind:style = "styleobj2">Click Me</a>
+		</div>
+		
+		<!--Event - Key Modifiers-->
+		<div id = "databinding5" style="border-bottom: 2px solid; margin-top:2%; padding-bottom:1.5%;">
+			Type something and press ENTER<br/>
+			<input type = "text" v-on:keyup.enter = "showinputvalue" v-bind:style = "styleobj3" placeholder = "Enter your name"/>
+			<h3> {{name}}</h3>
+		</div>
+		
+		<!--Custom Events-->
+		<div id = "databinding6">
+			<div id = "counter-event-example">
+				<p style = "font-size:25px;">Language displayed : <b>{{ languageclicked }}</b></p>
+				<button-counter v-for = "(item, index) in languages" v-bind:item = "item" v-bind:index = "index" v-on:showlanguage = "languagedisp"></button-counter>
+			</div>
+		</div>
+		
+		<script type = "text/javascript">
+			var vm = new Vue({
+				el: '#databinding',
+				data: {
+					num1: 100,
+					num2 : 200,
+					total : '',
+					total2 : ''
+				},
+				methods : {
+					displaynumbers : function(event) {
+						console.log(event);
+						this.num1=100;
+						return this.total =  this.num1+ this.num2;
+					},
+					displaynumbers2 : function(event) {
+						console.log(event);
+						this.num1=200;
+						return this.total2 =  this.num1+ this.num2;
+					}
+				},
+			});
+			/*-----------------------------------------------------*/
+			var vm2 = new Vue({
+				el: '#databinding2',
+				data: {
+					num1: 100,
+					num2 : 200,
+					total : '',
+					styleobj : {
+						width:"100px",
+						height:"100px",
+						backgroundColor:"red"
+					}
+				},
+				methods : {
+					changebgcolor : function() {
+						this.styleobj.backgroundColor = "green";
+					},
+					originalcolor : function() {
+						this.styleobj.backgroundColor = "red";
+					}
+				}
+			});
+			/*----------Event Modifiers--------------------------*/
+			var vm3 = new Vue({
+				el: '#databinding3',
+				data: {
+					clicknum : 0,
+					clicknum1 :0,
+					styleobj: {
+						backgroundColor: '#2196F3!important',
+						cursor: 'pointer',
+						padding: '8px 16px',
+						verticalAlign: 'middle'
+					}
+				},
+				methods : {
+					buttonclickedonce : function() {
+						this.clicknum++;
+					},
+					buttonclicked : function() {
+						this.clicknum1++;
+					}
+				}
+			});
+			/*----------Prevent--------------------------*/
+			var vm3 = new Vue({
+				el: '#databinding4',
+				data: {
+					clicknum : 0,
+					clicknum1 :0,
+					styleobj2: {
+						color: '#4CAF50',
+						marginLeft: '20px',
+						fontSize: '30px'
+					}
+				},
+				methods : {
+					clickme : function() {
+						alert("Anchor tag is clicked");
+					}
+				}
+			});
+			/*----------Event - Key Modifiers--------------------------*/
+			var vm4 = new Vue({
+				el: '#databinding5',
+				data: {
+					name:'',
+					styleobj3: {
+						width: "30%",
+						padding: "12px 20px",
+						margin: "8px 0",
+						boxSizing: "border-box"
+					}
+				},
+				methods : {
+					showinputvalue : function(event) {
+						this.name=event.target.value;
+					}
+				}
+			});
+			/*----------Custom Events--------------------------*/
+			Vue.component('button-counter', {
+				template: '<button v-on:click = "displayLanguage(item)"><span style = "font-size:20px;">{{ item }}</span></button>',
+				data: function () {
+					return {
+						counter: 0
+					}
+				},
+				props:['item'],
+				methods: {
+					displayLanguage: function (lng) {
+						console.log(lng);
+						this.$emit('showlanguage', lng);
+					}
+				},
+			});
+			var vm = new Vue({
+				el: '#databinding6',
+				data: {
+					languageclicked: "",
+					languages : ["Java", "PHP", "C++", "C", "Javascript", "C#", "Python", "HTML"]
+				},
+				methods: {
+					languagedisp: function (a) {
+						this.languageclicked = a;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

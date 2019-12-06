@@ -1,0 +1,16 @@
+{
+  "name": "json_server",
+  "version": "1.0.0",
+  "description": "FAKE REST API for testing",
+  "main": "index.js",
+  "scripts": {
+    "json:server": "json-server --watch db.json",
+    "json:server:vue_db_1": "json-server --watch vue_db_1.json",
+    "json:server:remote": "json-server http://jsonplaceholder.typicode.com/db"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.15.1"
+  }
+}

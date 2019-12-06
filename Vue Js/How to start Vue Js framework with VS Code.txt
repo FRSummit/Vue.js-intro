@@ -1,0 +1,28 @@
+1. vue create vue-starter //vue-starter is the project name
+	
+>> Manually select features > Vueex > ESLint with error prevention only > Lint on save > In dedicated config files > no 
+
+WAIT FOR INSTALLING THE PACKAGES
+---------------------------------------------------------------------------
+RUN Project >> npm run serve
+---------------------------------------------------------------------------
+How Vue JS Framework in VS Code
+---------------------------------------------------------------------------
+1. At first index.html has been called
+2. index.html calls the main.js
+3. main.js calls App.vue
+4. App.vue calls component folder's element
+
+>> index.html > main.js > App.vue > component
+			  > main.js imports router for route
+
+---------------------------------------------------------------------------
+
+Every vue component has a template tag, this is where our html markup goes, we have script tag where our logic goes and also style tag.
+
+Delete HelloWOrld.vue from component
+Inside App.vue -> Delete everything inside the <template> tag, Remove Helloworld import from script (aas it is no longer access), remove the helloworld component object named Helloworld.
+Edit template tag, add a <h2> and write something, 
+then run the project.
+
+Now install metarialize from google

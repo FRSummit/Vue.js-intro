@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>VueJs Instance</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+   
+	<body>
+		<div id = "vue_det">
+			<h1>Firstname : {{firstname}}</h1>
+			<h1>Lastname : {{lastname}}</h1>
+			<div v-html = "htmlcontent"></div>
+			<img v-bind:src="imgsrc" width = "300" height = "250" />
+			<img v-bind:src="imgsrc2" width = "300" height = "250" />
+		</div>
+
+		<script>
+			var vm = new Vue({
+				el: '#vue_det',
+				data: {
+					firstname : "F R",
+					lastname  : "Summit",
+					htmlcontent : "<div><h1>Hello F R Summit</h1></div>",
+					imgsrc : "pp.jpg",
+				}
+			})
+			
+		</script>
+	</body>
+</html>
